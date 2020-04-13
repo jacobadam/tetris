@@ -31,3 +31,38 @@ function drawBoard() {
 }
 
 drawBoard();
+
+const PIECES = [
+  [Z, "red"],
+  [S, "green"],
+  [T, "yellow"],
+  [O, "blue"],
+  [L, "purple"],
+  [I, "cyan"],
+  [J, "orange"],
+];
+
+let p = new Piece(PIECES[0][0], PIECES[0][1]);
+
+function Piece(tetromino, colour) {
+  this.tetromino = tetromino;
+  this.colour = colour;
+
+  this.tetrominoN = 0;
+  this.activeTetromino = this.tetromino[this.tetrominoN];
+
+  this.x = 2;
+  this.y = 5;
+}
+
+Piece.prototype.draw = function () {
+  for (r = 0; r < this.activeTetromino.length; r++) {
+    for (c = 0; c < this.activeTetromino.length; c++) {
+      if (this.activeTetromino[r][c]) {
+        drawSquare(this.x + c, this.y + r, this.colour);
+      }
+    }
+  }
+};
+
+p.draw();
