@@ -72,7 +72,7 @@ Piece.prototype.draw = function () {
 };
 
 Piece.prototype.unDraw = function () {
-  this.fill(this.VACANT);
+  this.fill(VACANT);
 };
 
 p.draw();
@@ -91,7 +91,7 @@ Piece.prototype.moveRight = function () {
   this.draw();
 };
 
-Piece.prototype.moveRight = function () {
+Piece.prototype.moveLeft = function () {
   this.unDraw();
   this.x--;
   this.draw();
@@ -99,9 +99,25 @@ Piece.prototype.moveRight = function () {
 
 Piece.prototype.rotate = function () {
   this.unDraw();
-  this.tetrominoN = (this.tetrominoN + 1)%this.tetromino.length;
+  this.tetrominoN = (this.tetrominoN + 1) % this.tetromino.length;
   this.activeTetromino = this.tetromino[this.tetrominoN];
   this.draw();
+};
+
+// contols
+
+document.addEventListener("keydown", CONTROL);
+
+function CONTROL(event) {
+  if (event.keyCode == "37") {
+    p.moveLeft();
+  } else if (event.keyCode == "38") {
+    p.rotate();
+  } else if (event.keyCode == "39") {
+    p.moveRight();
+  } else if (event.keyCode == "40") {
+    p.moveDown();
+  }
 };
 
 let dropStart = Date.now();
