@@ -51,18 +51,68 @@ function Piece(tetromino, colour) {
   this.tetrominoN = 0;
   this.activeTetromino = this.tetromino[this.tetrominoN];
 
-  this.x = 2;
-  this.y = 5;
+  this.x = 3;
+  this.y = 0;
 }
 
-Piece.prototype.draw = function () {
+// functionality to add / remove pieces
+
+Piece.prototype.fill = function (colour) {
   for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
       if (this.activeTetromino[r][c]) {
-        drawSquare(this.x + c, this.y + r, this.colour);
+        drawSquare(this.x + c, this.y + r, colour);
       }
     }
   }
 };
 
+Piece.prototype.draw = function () {
+  this.fill(this.colour);
+};
+
+Piece.prototype.unDraw = function () {
+  this.fill(this.VACANT);
+};
+
 p.draw();
+
+// piece moves
+
+Piece.prototype.moveDown = function () {
+  this.unDraw();
+  this.y++;
+  this.draw();
+};
+
+Piece.prototype.moveRight = function () {
+  this.unDraw();
+  this.x++;
+  this.draw();
+};
+
+Piece.prototype.moveRight = function () {
+  this.unDraw();
+  this.x--;
+  this.draw();
+};
+
+Piece.prototype.rotate = function () {
+  this.unDraw();
+  this.tetrominoN = (this.tetrominoN + 1)%this.tetromino.length;
+  this.activeTetromino = this.tetromino[this.tetrominoN];
+  this.draw();
+};
+
+let dropStart = Date.now();
+function drop() {
+  let now = Date.now();
+  let delta = now - dropStart;
+  if (delta > 1000) {
+    p.moveDown();
+    dropStart = Date.now();
+  }
+  requestAnimationFrame(drop);
+}
+
+drop();
