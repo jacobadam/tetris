@@ -42,7 +42,12 @@ const PIECES = [
   [J, "orange"],
 ];
 
-let p = new Piece(PIECES[0][0], PIECES[0][1]);
+function randomPiece() {
+  let r = (randomN = Math.floor(Math.random() * PIECES.length));
+  return new Piece(PIECES[r][0], PIECES[r][1]);
+}
+
+let p = randomPiece();
 
 function Piece(tetromino, colour) {
   this.tetromino = tetromino;
@@ -107,8 +112,17 @@ Piece.prototype.rotate = function () {
   let nextPattern = this.tetromino[
     (this.tetrominoN + 1) % this.tetromino.length
   ];
-  if (!this.collision(0, 0, nextPattern)) {
+  let kick = 0;
+  if (this.collision(0, 0, nextPattern)) {
+    if (this.x > COL / 2) {
+      kick = -1;
+    } else {
+      kick = 1;
+    }
+  }
+  if (!this.collision(kick, 0, nextPattern)) {
     this.unDraw();
+    this.x += kick;
     this.tetrominoN = (this.tetrominoN + 1) % this.tetromino.length;
     this.activeTetromino = this.tetromino[this.tetrominoN];
     this.draw();
