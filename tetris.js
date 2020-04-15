@@ -90,6 +90,9 @@ Piece.prototype.moveDown = function () {
     this.y++;
     this.draw();
   }
+  // } else {
+  //   p = randomPiece();
+  // }
 };
 
 Piece.prototype.moveRight = function () {
@@ -112,7 +115,9 @@ Piece.prototype.rotate = function () {
   let nextPattern = this.tetromino[
     (this.tetrominoN + 1) % this.tetromino.length
   ];
+
   let kick = 0;
+
   if (this.collision(0, 0, nextPattern)) {
     if (this.x > COL / 2) {
       kick = -1;
@@ -120,6 +125,7 @@ Piece.prototype.rotate = function () {
       kick = 1;
     }
   }
+
   if (!this.collision(kick, 0, nextPattern)) {
     this.unDraw();
     this.x += kick;
@@ -144,7 +150,7 @@ Piece.prototype.collision = function (x, y, piece) {
       if (newY < 0) {
         continue;
       }
-      if (board[newX][newY] != VACANT) {
+      if (board[newY][newX] != VACANT) {
         return true;
       }
     }
