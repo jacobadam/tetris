@@ -1,5 +1,6 @@
 const cvs = document.getElementById("tetris");
 const ctx = cvs.getContext("2d");
+const scoreElement = document.getElementById("score");
 
 const ROW = 20;
 const COL = (COLUMN = 10);
@@ -158,6 +159,7 @@ Piece.prototype.collision = function (x, y, piece) {
   return false;
 };
 
+let score = 0;
 Piece.prototype.lock = function () {
   for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
@@ -173,6 +175,25 @@ Piece.prototype.lock = function () {
       board[this.y + r][this.x + c] = this.colour;
     }
   }
+  for (r = 0; r < ROW; r++) {
+    let isRowFull = true;
+    for (c = 0; c < COL; c++) {
+      isRowFull = isRowFull && board[r][c] != VACANT;
+    }
+    if (isRowFull) {
+      for (y = r; y > 1; y--) {
+        for (c = 0; c < COL; c++) {
+          board[y][c] = board[y - 1][c];
+        }
+      }
+      for (c = 0; c < COL; c++) {
+        board[0][c] = VACANT;
+      }
+      score += 10;
+    }
+  }
+  drawBoard();
+  scoreElement.innerHTML = score;
 };
 
 // contols
