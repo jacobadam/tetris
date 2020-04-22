@@ -10,7 +10,7 @@ function drawSquare(x, y, colour) {
   ctx.fillStyle = colour;
   ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
 
-  ctx.strokeStyle = "WHITE";
+  ctx.strokeStyle = "GREY";
   ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
 }
 
@@ -35,7 +35,7 @@ drawBoard();
 const PIECES = [
   [Z, "red"],
   [S, "green"],
-  [T, "yellow"],
+  [T, "khaki"],
   [O, "blue"],
   [L, "purple"],
   [I, "cyan"],
@@ -57,7 +57,7 @@ function Piece(tetromino, colour) {
   this.activeTetromino = this.tetromino[this.tetrominoN];
 
   this.x = 3;
-  this.y = 0;
+  this.y = -2;
 }
 
 // functionality to add / remove pieces
@@ -89,10 +89,10 @@ Piece.prototype.moveDown = function () {
     this.unDraw();
     this.y++;
     this.draw();
+  } else {
+    this.lock();
+    p = randomPiece();
   }
-  // } else {
-  //   p = randomPiece();
-  // }
 };
 
 Piece.prototype.moveRight = function () {
@@ -158,6 +158,23 @@ Piece.prototype.collision = function (x, y, piece) {
   return false;
 };
 
+Piece.prototype.lock = function () {
+  for (r = 0; r < this.activeTetromino.length; r++) {
+    for (c = 0; c < this.activeTetromino.length; c++) {
+      if (!this.activeTetromino[r][c]) {
+        continue;
+      }
+      if (this.y + r < 0) {
+        console.log("hit");
+        alert("Game Ova Sucka!!!");
+        gameOver = true;
+        break;
+      }
+      board[this.y + r][this.x + c] = this.colour;
+    }
+  }
+};
+
 // contols
 
 document.addEventListener("keydown", CONTROL);
@@ -175,6 +192,7 @@ function CONTROL(event) {
 }
 
 let dropStart = Date.now();
+let gameOver = false;
 function drop() {
   let now = Date.now();
   let delta = now - dropStart;
@@ -182,7 +200,9 @@ function drop() {
     p.moveDown();
     dropStart = Date.now();
   }
-  requestAnimationFrame(drop);
+  if (!gameOver) {
+    requestAnimationFrame(drop);
+  }
 }
 
 drop();
