@@ -1,6 +1,12 @@
   #score {
     display: inline-block;
+    color: pink;
   }
+
+    #highScore {
+      display: inline-block;
+      color: pink;
+    }
 
   div {
     font-size: 25px;
@@ -16,5 +22,9 @@
   }
 
   body {
-    background-color: silver;
+    background-color: black;
+  }
+
+  #scoreBoard { 
+    color: snow;
   }

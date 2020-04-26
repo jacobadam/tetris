@@ -5,13 +5,13 @@ const scoreElement = document.getElementById("score");
 const ROW = 20;
 const COL = (COLUMN = 10);
 const SQ = (squareSize = 30);
-const VACANT = "BLACK";
+const VACANT = "maroon";
 
 function drawSquare(x, y, colour) {
   ctx.fillStyle = colour;
   ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
 
-  ctx.strokeStyle = "GREY";
+  ctx.strokeStyle = "black";
   ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
 }
 
@@ -34,13 +34,13 @@ function drawBoard() {
 drawBoard();
 
 const PIECES = [
-  [Z, "red"],
+  [Z, "#FF4136"],
   [S, "green"],
-  [T, "khaki"],
+  [T, "#FFDC00"],
   [O, "blue"],
   [L, "purple"],
-  [I, "cyan"],
-  [J, "orange"],
+  [I, "#7FDBFF"],
+  [J, "#FF851B"],
 ];
 
 function randomPiece() {
