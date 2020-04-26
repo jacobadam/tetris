@@ -4,7 +4,7 @@ const scoreElement = document.getElementById("score");
 
 const ROW = 20;
 const COL = (COLUMN = 10);
-const SQ = (squareSize = 20);
+const SQ = (squareSize = 30);
 const VACANT = "BLACK";
 
 function drawSquare(x, y, colour) {
