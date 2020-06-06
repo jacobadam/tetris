@@ -171,7 +171,9 @@ Piece.prototype.lock = function () {
         continue;
       }
       if (this.y + r < 0) {
-        alert("Game Over!!!");
+        updateHighscore(score);
+        alert("Game Over! Press 'Enter' to start again!");
+        document.location.reload();
         gameOver = true;
         break;
       }
@@ -200,6 +202,16 @@ Piece.prototype.lock = function () {
   scoreElement.innerHTML = score;
   rowTallyElement.innerHTML = rowTally;
 };
+
+function updateHighscore(score) {
+  console.log("hit");
+  console.log(score);
+  console.log(highScore);
+  if (score > highscore) {
+    highscore = score;
+    localStorage.setItem("highscore", score);
+  }
+}
 
 // contols
 
