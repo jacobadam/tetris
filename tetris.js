@@ -2,11 +2,11 @@ const cvs = document.getElementById("tetris");
 const ctx = cvs.getContext("2d");
 const scoreElement = document.getElementById("score");
 const rowTallyElement = document.getElementById("rowTally");
-
+const highScore = document.getElementById("highScore");
 
 const ROW = 20;
 const COL = (COLUMN = 10);
-const SQ = (squareSize = 30);
+const SQ = (squareSize = 40);
 const VACANT = "maroon";
 
 function drawSquare(x, y, colour) {
@@ -163,6 +163,7 @@ Piece.prototype.collision = function (x, y, piece) {
 
 let score = 0;
 let rowTally = 0;
+let highscore = localStorage.getItem("highscore") || score;
 Piece.prototype.lock = function () {
   for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
