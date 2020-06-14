@@ -2,7 +2,7 @@ const cvs = document.getElementById("tetris");
 const ctx = cvs.getContext("2d");
 const scoreElement = document.getElementById("score");
 const rowTallyElement = document.getElementById("rowTally");
-const highScore = document.getElementById("highScore");
+const highScoreElement = document.getElementById("highScore");
 
 const ROW = 20;
 const COL = (COLUMN = 10);
@@ -163,7 +163,7 @@ Piece.prototype.collision = function (x, y, piece) {
 
 let score = 0;
 let rowTally = 0;
-let highscore = localStorage.getItem("highscore") || score;
+let highScore = localStorage.getItem("highScore") || 0;
 Piece.prototype.lock = function () {
   for (r = 0; r < this.activeTetromino.length; r++) {
     for (c = 0; c < this.activeTetromino.length; c++) {
@@ -171,7 +171,7 @@ Piece.prototype.lock = function () {
         continue;
       }
       if (this.y + r < 0) {
-        updateHighscore(score);
+        updateHighscore(score, highScore);
         alert("Game Over! Press 'Enter' to start again!");
         document.location.reload();
         gameOver = true;
@@ -201,15 +201,13 @@ Piece.prototype.lock = function () {
   drawBoard();
   scoreElement.innerHTML = score;
   rowTallyElement.innerHTML = rowTally;
+  highScoreElement.innerHTML = highScore;
 };
 
-function updateHighscore(score) {
-  console.log("hit");
-  console.log(score);
-  console.log(highScore);
-  if (score > highscore) {
-    highscore = score;
-    localStorage.setItem("highscore", score);
+function updateHighscore(score, highScore) {
+  if (score > highScore) {
+    highScore = score;
+    localStorage.setItem("highScore", highScore);
   }
 }
 
