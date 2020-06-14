@@ -4,6 +4,13 @@ const scoreElement = document.getElementById("score");
 const rowTallyElement = document.getElementById("rowTally");
 const highScoreElement = document.getElementById("highScore");
 
+if (localStorage.getItem("highScore")) {
+  // console.log("the high score is " + localStorage.getItem("highScore"));
+  highScoreElement.innerHTML = localStorage.getItem("highScore");
+} else {
+  // console.log("no high score found");
+}
+
 const ROW = 20;
 const COL = (COLUMN = 10);
 const SQ = (squareSize = 40);
