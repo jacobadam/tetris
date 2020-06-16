@@ -7,25 +7,26 @@
     justify-content: center;
   }
 
-
   #tetris {
     display: block;
-    margin: 0 auto;
     border: 3px solid snow;
   }
 
   #scoreboard {
+    margin: 10px;
     font-size: 18px;
+    line-height: 30px;
     width: 150px;
-    height: 100px;
+    height: 150px;
     border: 3px solid maroon;
     color: whitesmoke;
   }
 
   #next {
+    margin: 10px;
     font-size: 18px;
     width: 150px;
-    height: 150;
+    height: 150px;
     border: 3px solid maroon;
     color: whitesmoke;
   }
