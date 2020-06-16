@@ -24,14 +24,23 @@
 
   #next {
     font-size: 18px;
-    top: 80px;
     width: 150px;
-    height: 100px;
+    height: 150;
     border: 3px solid maroon;
     color: whitesmoke;
   }
 
   #score {
+    display: inline-block;
+    color: whitesmoke;
+  }
+
+  #rowTally {
+    display: inline-block;
+    color: whitesmoke;
+  }
+
+  #highScore {
     display: inline-block;
     color: whitesmoke;
   }
