@@ -7,7 +7,7 @@ const rowTallyElement = document.getElementById("rowTally");
 const highScoreElement = document.getElementById("highScore");
 
 if (localStorage.getItem("highScore")) {
-  highScoreElement.innerHTML = localStorage.getItem("highScore");
+  highScoreElement.innerHTML = localStorage.getItem("highScore") || 0;
 } else {
 }
 
