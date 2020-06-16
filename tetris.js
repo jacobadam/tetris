@@ -1,14 +1,14 @@
-const cvs = document.getElementById("tetris");
-const ctx = cvs.getContext("2d");
+const canvas = document.getElementById("tetris");
+const context = canvas.getContext("2d");
+const canvas2 = document.getElementById("next");
+const context2 = canvas2.getContext("2d");
 const scoreElement = document.getElementById("score");
 const rowTallyElement = document.getElementById("rowTally");
 const highScoreElement = document.getElementById("highScore");
 
 if (localStorage.getItem("highScore")) {
-  // console.log("the high score is " + localStorage.getItem("highScore"));
   highScoreElement.innerHTML = localStorage.getItem("highScore");
 } else {
-  // console.log("no high score found");
 }
 
 const ROW = 20;
@@ -17,11 +17,11 @@ const SQ = (squareSize = 40);
 const VACANT = "maroon";
 
 function drawSquare(x, y, colour) {
-  ctx.fillStyle = colour;
-  ctx.fillRect(x * SQ, y * SQ, SQ, SQ);
+  context.fillStyle = colour;
+  context.fillRect(x * SQ, y * SQ, SQ, SQ);
 
-  ctx.strokeStyle = "black";
-  ctx.strokeRect(x * SQ, y * SQ, SQ, SQ);
+  context.strokeStyle = "black";
+  context.strokeRect(x * SQ, y * SQ, SQ, SQ);
 }
 
 let board = [];
@@ -54,10 +54,13 @@ const PIECES = [
 
 function randomPiece() {
   let r = (randomN = Math.floor(Math.random() * PIECES.length));
+  context2.r;
   return new Piece(PIECES[r][0], PIECES[r][1]);
 }
 
-let p = randomPiece();
+let nextTetromino = randomPiece();
+
+console.log(randomPiece());
 
 function Piece(tetromino, colour) {
   this.tetromino = tetromino;
@@ -90,7 +93,7 @@ Piece.prototype.unDraw = function () {
   this.fill(VACANT);
 };
 
-p.draw();
+nextTetromino.draw();
 
 // movement
 
@@ -101,7 +104,7 @@ Piece.prototype.moveDown = function () {
     this.draw();
   } else {
     this.lock();
-    p = randomPiece();
+    nextTetromino = randomPiece();
   }
 };
 
@@ -209,6 +212,7 @@ Piece.prototype.lock = function () {
   scoreElement.innerHTML = score;
   rowTallyElement.innerHTML = rowTally;
   highScoreElement.innerHTML = highScore;
+  nextTetrominoElement.innerHTML = nextTetromino;
 };
 
 function updateHighscore(score, highScore) {
@@ -224,13 +228,13 @@ document.addEventListener("keydown", CONTROL);
 
 function CONTROL(event) {
   if (event.keyCode == "37") {
-    p.moveLeft();
+    nextTetromino.moveLeft();
   } else if (event.keyCode == "38") {
-    p.rotate();
+    nextTetromino.rotate();
   } else if (event.keyCode == "39") {
-    p.moveRight();
+    nextTetromino.moveRight();
   } else if (event.keyCode == "40") {
-    p.moveDown();
+    nextTetromino.moveDown();
   }
 }
 
@@ -240,7 +244,7 @@ function drop() {
   let now = Date.now();
   let delta = now - dropStart;
   if (delta > 1000) {
-    p.moveDown();
+    nextTetromino.moveDown();
     dropStart = Date.now();
   }
   if (!gameOver) {

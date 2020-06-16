@@ -5,16 +5,22 @@
   <style>
   </style>
   <link rel="stylesheet" type="text/css" href="tetris.css" media="screen" />
+  <!-- <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
 </head>
 
 <body>
-  <canvas id="tetris" width="400" height="800"></canvas>
-  <div id="scoreBoard">
-    Score: <div id="score">0</div><br />
-    Rows: <div id="rowTally">0</div><br />
-    High Score: <div id="highScore">0</div>
+  <div id="flexbox">
+    <div id="scoreboard">
+      Score: <div id="score">0</div><br />
+      Rows: <div id="score">0</div><br />
+      High Score: <div id="score">0</div>
+    </div>
+    <canvas id="tetris" width="400" height="800"></canvas>
+    <canvas id="next">
+    </canvas>
   </div>
-  <div id="nextTetromino">Next Tetromio</div>
   <script src="tetrominoes.js"></script>
   <script src="tetris.js"></script>
 </body>

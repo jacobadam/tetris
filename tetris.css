@@ -1,55 +1,37 @@
-  /* div {
-    font-size: 25px;
-    font-weight: bold;
-    font-family: monospace;
-    text-align: center;
-  } */
+  body {
+    background-color: black;
+  }
 
-  canvas {
+  #flexbox {
+    display: flex;
+    justify-content: center;
+  }
+
+
+  #tetris {
     display: block;
     margin: 0 auto;
     border: 3px solid snow;
   }
 
-  body {
-    background-color: black;
-  }
-
-  #scoreBoard {
-    position: absolute;
-    bottom: 35px;
+  #scoreboard {
     font-size: 18px;
-    top: 80px;
-    left: 150px;
-    width: 200px;
+    width: 150px;
     height: 100px;
     border: 3px solid maroon;
     color: whitesmoke;
   }
 
-  #nextTetromino {
-    position: absolute;
-    bottom: 35px;
+  #next {
     font-size: 18px;
     top: 80px;
-    right: 150px;
-    width: 200px;
+    width: 150px;
     height: 100px;
     border: 3px solid maroon;
     color: whitesmoke;
   }
 
   #score {
-    display: inline-block;
-    color: whitesmoke;
-  }
-
-  #highScore {
-    display: inline-block;
-    color: whitesmoke;
-  }
-
-  #rowTally {
     display: inline-block;
     color: whitesmoke;
   }
