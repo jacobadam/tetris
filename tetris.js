@@ -1,7 +1,7 @@
 const canvas = document.getElementById("tetris");
 const context = canvas.getContext("2d");
-const canvas2 = document.getElementById("next");
-const context2 = canvas2.getContext("2d");
+// const canvasNext = document.getElementById("next");
+// const contextNext = canvasNext.getContext("2d");
 const scoreElement = document.getElementById("score");
 const rowTallyElement = document.getElementById("rowTally");
 const highScoreElement = document.getElementById("highScore");
@@ -53,12 +53,11 @@ const PIECES = [
 
 function randomPiece() {
   let r = (randomN = Math.floor(Math.random() * PIECES.length));
+
   return new Piece(PIECES[r][0], PIECES[r][1]);
 }
 
 let p = randomPiece();
-
-context2.p;
 
 function Piece(tetromino, colour) {
   this.tetromino = tetromino;
