@@ -9,7 +9,7 @@
 
   #tetris {
     display: block;
-    border: 3px solid snow;
+    border: 3px solid aliceblue;
   }
 
   #scoreboard {
@@ -18,9 +18,9 @@
     line-height: 50px;
     width: 150px;
     height: 150px;
-    border: 3px solid maroon;
     color: whitesmoke;
     text-align: center;
+    box-shadow: 0 4px 8px 0 blue;
   }
 
   #next {
@@ -28,7 +28,8 @@
     font-size: 18px;
     width: 150px;
     height: 150px;
-    border: 3px solid maroon;
+    box-shadow: 0 4px 8px 0 blue;
+
     color: whitesmoke;
   }
 
