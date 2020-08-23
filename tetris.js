@@ -13,7 +13,7 @@ if (localStorage.getItem("highScore")) {
 const ROW = 20;
 const COL = (COLUMN = 10);
 const SQ = (squareSize = 30);
-const VACANT = "red";
+const VACANT = "maroon";
 
 function drawSquare(x, y, colour) {
   context.fillStyle = colour;
